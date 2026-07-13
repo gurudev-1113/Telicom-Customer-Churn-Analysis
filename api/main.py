@@ -19,9 +19,16 @@ app.add_middleware(
 )
 
 # Load model and preprocessor once when the app starts
-model = joblib.load("models/best_xgboost_model.pkl")
-preprocessor = joblib.load("models/preprocessor.pkl")
+from pathlib import Path
+import joblib
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+MODEL_PATH = BASE_DIR / "models" / "best_xgboost_model.pkl"
+PREPROCESSOR_PATH = BASE_DIR / "models" / "preprocessor.pkl"
+
+model = joblib.load(MODEL_PATH)
+preprocessor = joblib.load(PREPROCESSOR_PATH)
 @app.get("/")
 def home():
     return {
