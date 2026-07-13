@@ -33,8 +33,12 @@ document.getElementById('churn-form').addEventListener('submit', async function(
         PointEarned: parseInt(data.PointEarned)
     };
 
+    // Determine API URL based on environment (local vs production)
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+    const apiUrl = isLocal ? 'http://127.0.0.1:8000/predict' : '/predict';
+
     try {
-        const response = await fetch('/predict', {
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
