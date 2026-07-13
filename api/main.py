@@ -8,6 +8,16 @@ app = FastAPI(
     version="1.0.0"
 )
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Load model and preprocessor once when the app starts
 model = joblib.load("models/best_xgboost_model.pkl")
 preprocessor = joblib.load("models/preprocessor.pkl")

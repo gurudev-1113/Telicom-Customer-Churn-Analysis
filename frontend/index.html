@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Predictor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Churn Predictor</h1>
+            <p>Enter customer details to predict churn probability</p>
+        </header>
+
+        <form id="churn-form">
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="CreditScore">Credit Score</label>
+                    <input type="number" id="CreditScore" name="CreditScore" required placeholder="e.g. 600">
+                </div>
+                
+                <div class="input-group">
+                    <label for="Geography">Geography</label>
+                    <select id="Geography" name="Geography" required>
+                        <option value="" disabled selected>Select Geography</option>
+                        <option value="France">France</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Germany">Germany</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="Gender">Gender</label>
+                    <select id="Gender" name="Gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="Age">Age</label>
+                    <input type="number" id="Age" name="Age" required placeholder="e.g. 40">
+                </div>
+
+                <div class="input-group">
+                    <label for="Tenure">Tenure</label>
+                    <input type="number" id="Tenure" name="Tenure" required placeholder="Years (0-10)">
+                </div>
+
+                <div class="input-group">
+                    <label for="Balance">Balance</label>
+                    <input type="number" step="0.01" id="Balance" name="Balance" required placeholder="e.g. 50000">
+                </div>
+
+                <div class="input-group">
+                    <label for="NumOfProducts">Num of Products</label>
+                    <input type="number" id="NumOfProducts" name="NumOfProducts" required placeholder="1-4">
+                </div>
+
+                <div class="input-group">
+                    <label for="HasCrCard">Has Credit Card</label>
+                    <select id="HasCrCard" name="HasCrCard" required>
+                        <option value="1">Yes (1)</option>
+                        <option value="0">No (0)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="IsActiveMember">Active Member</label>
+                    <select id="IsActiveMember" name="IsActiveMember" required>
+                        <option value="1">Yes (1)</option>
+                        <option value="0">No (0)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="EstimatedSalary">Estimated Salary</label>
+                    <input type="number" step="0.01" id="EstimatedSalary" name="EstimatedSalary" required placeholder="e.g. 80000">
+                </div>
+
+                <div class="input-group">
+                    <label for="Complain">Complain</label>
+                    <select id="Complain" name="Complain" required>
+                        <option value="1">Yes (1)</option>
+                        <option value="0">No (0)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="SatisfactionScore">Satisfaction Score</label>
+                    <input type="number" id="SatisfactionScore" name="SatisfactionScore" required placeholder="1-5">
+                </div>
+
+                <div class="input-group">
+                    <label for="CardType">Card Type</label>
+                    <select id="CardType" name="CardType" required>
+                        <option value="" disabled selected>Select Card Type</option>
+                        <option value="DIAMOND">Diamond</option>
+                        <option value="GOLD">Gold</option>
+                        <option value="SILVER">Silver</option>
+                        <option value="PLATINUM">Platinum</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="PointEarned">Points Earned</label>
+                    <input type="number" id="PointEarned" name="PointEarned" required placeholder="e.g. 500">
+                </div>
+            </div>
+
+            <button type="submit" id="submit-btn">Predict Churn</button>
+        </form>
+
+        <div id="result-container" class="hidden">
+            <h2 id="prediction-result"></h2>
+            <p id="probability-text"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
