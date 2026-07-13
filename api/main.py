@@ -2,8 +2,7 @@ from fastapi import FastAPI
 from api.schema import CustomerData
 import joblib
 import pandas as pd
-from mangum import Mangum
-from main import app
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(
     title="Customer Churn Prediction API",
@@ -31,13 +30,7 @@ PREPROCESSOR_PATH = BASE_DIR / "models" / "preprocessor.pkl"
 
 model = joblib.load(MODEL_PATH)
 preprocessor = joblib.load(PREPROCESSOR_PATH)
-@app.get("/")
-def home():
-    return {
-        "message": "Customer Churn Prediction API",
-        "status": "Running"
-    }
-
+# Root endpoint is replaced by StaticFiles mount at the bottom of the file
 @app.post("/predict")
 def predict(customer: CustomerData):
 
@@ -64,4 +57,6 @@ def predict(customer: CustomerData):
         "prediction": int(prediction),
         "probability": round(float(probability), 4)
     }
-handler = Mangum(app)
+
+# Mount the frontend directory to serve index.html, app.js, and style.css
+app.mount("/", StaticFiles(directory=BASE_DIR / "frontend", html=True), name="frontend")

@@ -42,7 +42,7 @@ const isLocal =
 
 const apiUrl = isLocal 
     ? 'http://127.0.0.1:8000/predict' 
-    : '/api/predict';
+    : '/predict';
 
     try {
         const response = await fetch(apiUrl, {
