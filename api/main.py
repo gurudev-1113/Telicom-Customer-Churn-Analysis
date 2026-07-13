@@ -40,6 +40,17 @@ def home():
 def predict(customer: CustomerData):
 
     data = pd.DataFrame([customer.model_dump()])
+    
+    # Map Gender to int if it's a string, assuming Male=1, Female=0
+    if 'Gender' in data.columns:
+        data['Gender'] = data['Gender'].map({"Male": 1, "Female": 0}).fillna(data['Gender'])
+        # If it was already int, fillna keeps it. 
+        # But let's make sure it's int or at least not fail if unknown
+        data['Gender'] = pd.to_numeric(data['Gender'], errors='coerce').fillna(1).astype(int)
+        
+    # Ensure CardType is uppercase as expected by OneHotEncoder
+    if 'CardType' in data.columns:
+        data['CardType'] = data['CardType'].astype(str).str.upper()
 
     transformed = preprocessor.transform(data)
 
