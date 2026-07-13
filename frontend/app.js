@@ -34,7 +34,7 @@ document.getElementById('churn-form').addEventListener('submit', async function(
     };
 
     try {
-        const response = await fetch('https://telicom-customer-churn-analysis.onrender.com/predict', {
+        const response = await fetch('/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
