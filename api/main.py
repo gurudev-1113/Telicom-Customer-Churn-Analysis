@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from api.schema import CustomerData
 import joblib
 import pandas as pd
+from mangum import Mangum
+from main import app
 
 app = FastAPI(
     title="Customer Churn Prediction API",
@@ -62,3 +64,4 @@ def predict(customer: CustomerData):
         "prediction": int(prediction),
         "probability": round(float(probability), 4)
     }
+handler = Mangum(app)
